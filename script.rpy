@@ -16,6 +16,17 @@ image beta = im.Scale("char/beta.png", 611.9, 865.6)
 #cutscene asset#
 image movie = Movie(size=(1920,1080), xpos=0, ypos=0, xanchor=0, yanchor=0)
 
+#prop#
+image saved:
+    size (150, 150)
+    "prop/save1.png"
+    align(0.1,0.1)
+    pause(0.5)
+    "prop/save2.png"
+    pause(0.5)
+    "prop/save3.png"
+    pause(0.5)
+
 #define#
 define m = "[player_name]"
 define q = "???"
@@ -27,13 +38,15 @@ define b = "เบต้า"
 #variable#
 default mompics = False
 
-#start here#
-label start:
-    #show beta at right
-    #show tiwa at center
-    #pause(99)
-    $ player_name = renpy.input("โปรดใส่ชื่อ")
+################################################
 
+screen save_icon():
+    add "saved"
+
+#################start here#####################
+label start:
+    #pause
+    $ player_name = renpy.input("โปรดใส่ชื่อ")
 
 label tenyrs:
     play music "audio/bgm/bgm01.mp3" fadein 1.0 volume 0.5
@@ -130,8 +143,9 @@ label nineyrs:
             d "ไปดีมาดีนะ แล้วก็ขอบคุณสำหรับรูปนะ" with wiperight
             scene black with dissolve
             pause(3.0)
-            jump meet_lily
             $ mompics = False
+            jump meet_lily         
+
         "ไม่ให้":
             m "แม่ไม่ได้ไปไหนหรอกครับ แม่จะอยู่กับคุณพ่อและผมเสมอครับ" with wiperight
             m "ผมขอตัวก่อนนะครับ"
@@ -139,8 +153,8 @@ label nineyrs:
             d "ไปดีมาดีนะ" with wiperight
             scene black with dissolve
             pause(3.0)
+            $ mompics = True       
             jump meet_lily
-            $ mompics = True
 
 label meet_lily:
     "4 ชั่วโมงต่อมา.."
@@ -166,7 +180,7 @@ label meet_lily:
     m "เอ่อ แครล์สินะ" with wiperight
     show lily at center
     with move
-    l "คุณแคร์ค่ะ" with wiperight
+    l "คุณแครล์ค่ะ" with wiperight
     l "ช่วยรบกวนแต่งตัวให้เป็นระเบียบ แล้วอย่ามาสนทนากับดิฉันอีกนะคะ ขอตัวก่อนค่ะ" with wiperight
     hide lily with dissolve
     m "..คนในเมืองเป็นแบบนี้หมดเลยหรอ" with wiperight

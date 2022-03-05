@@ -16,17 +16,6 @@ image beta = im.Scale("char/beta.png", 611.9, 865.6)
 #cutscene asset#
 image movie = Movie(size=(1920,1080), xpos=0, ypos=0, xanchor=0, yanchor=0)
 
-#prop#
-image saved:
-    size (150, 150)
-    "prop/save1.png"
-    align(0.1,0.1)
-    pause(0.5)
-    "prop/save2.png"
-    pause(0.5)
-    "prop/save3.png"
-    pause(0.5)
-
 #define#
 define m = "[player_name]"
 define q = "???"
@@ -39,9 +28,6 @@ define b = "เบต้า"
 default mompics = False
 
 ################################################
-
-screen save_icon():
-    add "saved"
 
 #################start here#####################
 label start:

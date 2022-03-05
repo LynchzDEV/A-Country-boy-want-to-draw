@@ -4,8 +4,9 @@ image bg_trainCT = im.Scale("bg/train city.png", 1920, 1080)
 image bg_classroomDAY = im.Scale("bg/classroom day.png", 1920, 1080)
 image bg_classroonEL = im.Scale("bg/classroom early.png", 1920, 1080)
 image bg_classroomRAIN = im.Scale("bg/classroom rain.png", 1920, 1080)
-image bg_schoolFR = im.Scale("bg/classroom early.png", 1920, 1080) ##เปลี่ยนพื้นหลัง## #fornt school#
+image bg_schoolFR = im.Scale("bg/school front.png", 1920, 1080) ##เปลี่ยนพื้นหลัง## #fornt school#
 image bg_schoolMT = im.Scale("bg/classroom day.png", 1920, 1080) ##เปลี่ยนพื้นหลัง## #meeting point school#
+image bg_artclub = im.Scale("bg/classroom rain.png",1920, 1080) ##เปลี่ยนพื้นหลัง## #art club school#
 
 #character#
 image dad = im.Scale("char/dad.png", 693.3, 980.8) 
@@ -35,7 +36,7 @@ label start:
     $ player_name = renpy.input("โปรดใส่ชื่อ")
 
 label tenyrs:
-    play music "audio/bgm/bgm01.mp3" fadein 1.0 volume 0.5
+    play music "audio/bgm/origin.mp3" fadein 1.0 volume 0.5
     #cut-scene mom1#
     play movie "cs/mom1.ogv" loop ###เปลี่ยนคัทซีน### #mom01#
     show movie with dissolve
@@ -103,7 +104,7 @@ label tenyrs_c:
     pause(3.0)
 
 label nineyrs:
-    play music "audio/bgm/bgm02.mp3" fadein 1.0 volume 0.5
+    play music "audio/bgm/urban.mp3" fadein 1.0 volume 0.5
     "9 ปีถัดมา.." with dissolve
     pause(2.0)
     scene bg_trainUB with dissolve
@@ -169,16 +170,16 @@ label meet_lily:
     l "คุณแครล์ค่ะ" with wiperight
     l "ช่วยรบกวนแต่งตัวให้เป็นระเบียบ แล้วอย่ามาสนทนากับดิฉันอีกนะคะ ขอตัวก่อนค่ะ" with wiperight
     hide lily with dissolve
-    m "..คนในเมืองเป็นแบบนี้หมดเลยหรอ" with wiperight
-    m "แค่เสื้อผ้าหลุดลุ่ยนิดหน่อยเอง.." with wiperight
-    m "เอ๊ะ งั้นเราก็แอบตามเธอไปดีกว่า คิดว่าเธอคงเดินไปโรงเรียนนั่นแหล่ะ" with wiperight
-    m "ฉลาดจริง ๆ ตัวฉัน" with wiperight
+    m "\'..คนในเมืองเป็นแบบนี้หมดเลยหรอ\'" with wiperight
+    m "\'แค่เสื้อผ้าหลุดลุ่ยนิดหน่อยเอง..\'" with wiperight
+    m "\'เอ๊ะ งั้นเราก็แอบตามเธอไปดีกว่า คิดว่าเธอคงเดินไปโรงเรียนนั่นแหล่ะ\'" with wiperight
+    m "\'ฉลาดจริง ๆ ตัวฉัน!\'" with wiperight
     scene black with dissolve
     stop music fadeout 2.0
     pause(3.0)
 
 label meet_beta:
-    play music "audio/bgm/bgm03.mp3" fadein 1.0 volume 0.5
+    play music "audio/bgm/beta version.mp3" fadein 1.0 volume 0.5
     scene bg_schoolFR with dissolve
     m "อย่างน้อยก็มาถึงโรงเรียนแล้วแฮะ ต้องขอบคุณคุณหนู.​. แบร์ อะไรซักอย่างนี่แหละ" with wiperight
     m "ว่าแต่เธอหายไปไหนแล้วนะ.. ชั่งมันแล้วกัน ไว้ค่อยขอบคุณทีหลัง" with wiperight
@@ -208,3 +209,74 @@ label meet_beta:
     b "เบต้าจังต่างหาก เบต้าจัง" with wiperight
     m "เบต้าจังสินะ.." with wiperight
     m "\'เป็นคนแปลกชะมัด\'" with wiperight
+    scene black with dissolve
+    pause(3.0)
+
+label begeining:
+    "หลังจากปฐมนิเทศเสร็จเป็นเวลา 30 นาที.​.." with wiperight
+    scene bg_schoolMT with dissolve
+    m "น่าเบื่อเป็นบ้า ต้องนั่งฟังผู้อำนวยการกว่าครึ่งชั่วโมง อยากวาดรูปจะตายอยู่แล้ว !" with wiperight
+    show beta at center with dissolve
+    b "ฉันก็คิดว่ามันน่าเบื่อน่ะน้า ~" with wiperight
+    b "นี่ นายทำอะไรอยู่หรอ ?" with wiperight
+    m "วาดรูปน่ะ" with wiperight
+    b "เห.. ฉันก็ชอบวาดรูปเหมือนกัน ขอดูรูปของนายหน่อยได้ไหม" with wiperight
+    menu:
+        m "\'ให้ดูดีไหมนะ..\'" with wiperight
+        "ให้ดู": 
+            m "ได้สิ" with wiperight
+            "\'คุณได้ยื่นรูปให้เธอ\'" with wiperight
+            b "นี่นาย.. วาดรูปได้เก่งขนาดนี้เลยหรอ" with wiperight
+            b "นายช่วยมากับฉันครู่นึงได้มั้ย" with wiperight
+            m "เอ่อ.. ก็ได้อยู่หรอกนะ" with wiperight
+            "เบต้ารีบคว้ามือ และวิ่งตรงไปยังห้องห้องหนึ่ง.." with wiperight
+            b "\'ทำไมเธอต้องอึ้งขนาดนั้นด้วยนะ..\'" with wiperight
+            scene black
+            stop music fadeout 2.0
+            jump artclub_beta
+            
+        "ไม่ให้ดู":
+            b "นี่นายจะขี้หวงตั้งแต่เจอกันเลยหรอ" with wiperight
+            b "ชิ" with wiperight
+            m "เอ่อ เบต้า คุณครูเข้าคาบแล้วนะ" with wiperight
+            show beta at right
+            with move 
+            b "!!!" with wiperight
+            b "งั้นคงต้องขอตัวก่อนละกัน แล้วก็.." with wiperight
+            b "คำว่าจังหายอีกแล้วนะ!" with wiperight
+            hide beta with moveoutright
+            m "\'จริงๆเลยนะ ผู้หญิงคนนี้..\'" with wiperight
+
+label artclub_beta:
+    play music "audio/bgm/art of plight.mp3" fadein 1.0 volume 0.5
+    scene bg_artclub with dissolve
+    show beta at center with dissolve
+    m "ที่นี่.. ห้องอะไรหรอ" with wiperight
+    b "ห้องของชมรมศิลปะยังไงล่ะ!" with wiperight
+    m "เบต้าไม่เหนื่อยเลยหรือไงนะ.." with wiperight
+    b "ไม่นะ แล้วก็คำว่าจังหายอีกแล้วนะ" with wiperight
+    m "จ้า เบต้าจังจ้า" with wiperight
+    b "ต้องอย่างนี้สิ งั้นเข้าเรื่องเลยนะ" with wiperight
+    b "นายช่วยเข้าชมรมศิลปะหน่อยสิ" with wiperight
+    b "ฉันจะตอบแทนให้ด้วยการให้นายสอนวาดรูปกับเบต้าจังคนนี้" with wiperight
+    m "ตรงไหนคือกำไรของฉันหรอ.." with wiperight
+    b "เอาน่า ถ้านายเข้าชมรมศิลปะ นายจะได้สอนฉันวาดรูปด้วยไง" with wiperight
+    m "\'เธอจะพูดวกไปวนมาทำไมนะ..\'" with wiperight
+    m "ขอปฎิเสธ" with wiperight
+    b "ฉันก็คิดไว้อยู่แล้ว เพราะความจริงนายอยากจะอยู่กับเบต้าจัง.." with wiperight
+    b "เดี๋ยว นายปฎิเสธหรอ" with wiperight
+    m "ใช่" with wiperight
+    b ". . ." with wiperight
+    b "แล้วเธอจะเอาเวลาไหนมาสอนฉันหล่ะ ~"
+    m "ก็ อย่างตอนพักกลาง.. อ้าว เธอคือ เอ่อ.. คุณหนูแบร์ใช่มั้ย" with wiperight
+    show beta at right with move
+    show lily at left with dissolve
+    m "ก่อนหน้านี้ฉันยังไม่ได้ขอบคุณที่นำทางมาโรงเรียนเลย" with wiperight
+    l "ไม่ทราบว่าพูดกับใคร เรื่องอะไรหรอคะ? ดิฉันชื่อแครล์ค่ะ" with wiperight
+    b "แหม นาน ๆ ทีจะเห็นคนกล้าแซวเจ้าหญิงลิลลี่ได้นะเนี่ย" with wiperight
+    l "กรุณาเรียกว่าแครล์ด้วยค่ะ" with wiperight
+    b "ว่าแต่วันนี้ลี่เดินมาโรงเรียนหรอ ปกติจะมีรถรับส่งไม่ใช่หรอ" with wiperight
+    l "..วันนี้แค่อยากเดินน่ะค่ะ" with wiperight
+    b "เห~ ไม่ใช่เพราะว่าสงสารเลยอยากเดินนำทางเด็กหนุ่มคนนี้มาโรงเรียนหรอกหรอคะคุณหญิงลิลลี่”" with wiperight
+
+

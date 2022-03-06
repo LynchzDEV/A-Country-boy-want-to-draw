@@ -4,8 +4,9 @@ image bg_trainCT = im.Scale("bg/train city.png", 1920, 1080)
 image bg_classroomDAY = im.Scale("bg/classroom day.png", 1920, 1080)
 image bg_classroonEL = im.Scale("bg/classroom early.png", 1920, 1080)
 image bg_classroomRAIN = im.Scale("bg/classroom rain.png", 1920, 1080)
-image bg_schoolFR = im.Scale("bg/school front.png", 1920, 1080) ##เปลี่ยนพื้นหลัง## #fornt school#
+image bg_schoolFR = im.Scale("bg/school front.png", 1920, 1080)
 image bg_schoolMT = im.Scale("bg/classroom day.png", 1920, 1080) ##เปลี่ยนพื้นหลัง## #meeting point school#
+image bg_hallway = im.Scale("bg/classroom day.png", 1920, 1080)  ##เปลี่ยนพื้นหลัง## #hallway#
 image bg_artclub = im.Scale("bg/classroom rain.png",1920, 1080) ##เปลี่ยนพื้นหลัง## #art club school#
 
 #character#
@@ -30,6 +31,7 @@ define t = "ครูทิวา"
 
 #variable#
 default mompics = False
+default r_lily = False
 
 ################################################
 
@@ -156,35 +158,52 @@ label meet_lily:
     q "โหวกเหวก โวยวาย ไม่สมกับเป็นนักเรียนจากโรงเรียนเดียวกันเลยนะคะ เป็นไปได้ช่วยมีมารยาทหน่อยค่ะ" with wiperight
     play movie "cs/mom1.ogv" loop ###เปลี่ยนคัทซีน### #lily01#
     show movie with dissolve
-    pause(3.0)  
-    m "เอ่อ. . ไม่ทราบว่าคุณอยู่โรงเรียนเดียวกับผมหรอครับ" with wiperight
-    q "เกรงว่าจะใช่ค่ะ" with wiperight
-    m "\'เหมือนจะเป็นเด็กประถมแฮะ..\'" with wiperight
+    pause(5.0)
     hide movie with dissolve
     stop movie
     scene bg_trainCT with dissolve
-    show lily at right
-    with moveinright
-    m ".​.​.อย่างนี้นี่เอง เอ่อ.. คุณ.." with wiperight
-    l "แครล์... แครล์ ลิลลี่ ค่ะ" with wiperight
-    m "เอ่อ แครล์สินะ" with wiperight
-    show lily at center
-    with move
-    l "คุณแครล์ค่ะ" with wiperight
-    l "ช่วยรบกวนแต่งตัวให้เป็นระเบียบ แล้วอย่ามาสนทนากับดิฉันอีกนะคะ ขอตัวก่อนค่ะ" with wiperight
-    hide lily with dissolve
-    m "\'..คนในเมืองเป็นแบบนี้หมดเลยหรอ\'" with wiperight
-    m "\'แค่เสื้อผ้าหลุดลุ่ยนิดหน่อยเอง..\'" with wiperight
-    m "\'เอ๊ะ งั้นเราก็แอบตามเธอไปดีกว่า คิดว่าเธอคงเดินไปโรงเรียนนั่นแหล่ะ\'" with wiperight
-    m "\'ฉลาดจริง ๆ ตัวฉัน!\'" with wiperight
-    scene black with dissolve
-    stop music fadeout 2.0
-    pause(3.0)
+    show lily at center with dissolve
+    menu:
+        "ขอโทษละกัน จะไม่โหวกเหวกโวยวายแล้วครับ":
+            m "ขอโทษละกัน จะไม่โหวกเหวกโวยวายแล้วครับ"
+            q "ถ้างั้นก็ดีเลยค่ะ"
+            m "ช่วยนำทางผมไปโรงเรียนได้ไหม เอ่อ.."
+            l "\"แครล์\".. \"แครล์ ลิลลี่\" ค่ะ ยังไงดิฉันจะเดินไปโรงเรียนอยู่แล้ว"
+            l "ดิฉันไม่รังเกียจหรอกค่ะถ้าจะเดินตามมา"
+            l "ก่อนอื่นเลยช่วยแต่งตัวให้เป็นระเบียบก่อนค่ะ"
+            l "ถ้าจะเดินตามมาก็ช่วยเว้นระยะห่าง และก็อย่ามาสนทนากับดิฉันอีกนะคะ"
+            hide lily with dissolve
+            m "เอ่อ.. ขอบคุณ คิดว่านะ"
+            m "\'..คนในเมืองเป็นแบบนี้หมดเลยหรอ\'" with wiperight
+            m "\'แค่เสื้อผ้าหลุดลุ่ยนิดหน่อยเอง..\'" with wiperight
+            $ r_lily = True
+            scene black with dissolve
+            stop music fadeout 2.0
+            pause(3.0)
+            jump meet_beta
+
+        "ผมไม่ต้องให้เด็กมัธยมต้นมาเตือนหรอกนะ":
+            m "เด็ก ม.ปลาย แบบผมไม่ต้องให้รุ่นน้องแบบคุณมาเตือนหรอกนะ"
+            q "ถ้างั้นช่วยมีมารยาทให้สมกับเป็นเด็กมัธยมปลายด้วยค่ะ"
+            l "นี่ถือว่าเป็นคำสั่งสอนจากเด็กมัธยมปลายด้วยกันนะคะ"
+            m ".​.​.อย่างนี้นี่เอง เอ่อ.. คุณ.." with wiperight
+            q "ช่วยรบกวนแต่งตัวให้เป็นระเบียบ แล้วอย่ามาสนทนากับดิฉันอีกนะคะ ขอตัวก่อนค่ะ" with wiperight
+            hide lily with dissolve
+            m "\'..คนในเมืองเป็นแบบนี้หมดเลยหรอ\'" with wiperight
+            m "\'แค่เสื้อผ้าหลุดลุ่ยนิดหน่อยเอง..\'" with wiperight
+            m "\'เอ๊ะ งั้นเราก็แอบตามเธอไปดีกว่า คิดว่าเธอคงเดินไปโรงเรียนนั่นแหล่ะ\'" with wiperight
+            m "\'ฉลาดจริง ๆ ตัวฉัน!\'" with wiperight
+            $ r_lily = False
+            scene black with dissolve
+            stop music fadeout 2.0
+            pause(3.0)
+            jump meet_beta
+
 
 label meet_beta:
     play music "audio/bgm/beta version.mp3" fadein 1.0 volume 0.5
     scene bg_schoolFR with dissolve
-    m "อย่างน้อยก็มาถึงโรงเรียนแล้วแฮะ ต้องขอบคุณคุณหนู.​. แบร์ อะไรซักอย่างนี่แหละ" with wiperight
+    m "อย่างน้อยก็มาถึงโรงเรียนแล้วแฮะ ต้องขอบคุณคุณหนูนั่น ชื่ออะไรซักอย่างนี่แหละ" with wiperight
     m "ว่าแต่เธอหายไปไหนแล้วนะ.. ชั่งมันแล้วกัน ไว้ค่อยขอบคุณทีหลัง" with wiperight
     m "ถ้าได้เจอกันน่ะนะ" with wiperight
     m "ต่อไปก็ พิธีปฐมนิเทศสินะ เอาล่ะ ต้องไปทางไหนนะ.." with wiperight
@@ -239,6 +258,7 @@ label begeining:
             jump artclub_beta
             
         "ไม่ให้ดู":
+            m "ทำไมฉันต้องให้ดูด้วย" with wiperight
             b "นี่นายจะขี้หวงตั้งแต่เจอกันเลยหรอ" with wiperight
             b "ชิ" with wiperight
             m "เอ่อ เบต้า คุณครูเข้าคาบแล้วนะ" with wiperight
@@ -251,7 +271,12 @@ label begeining:
             m "\'จริงๆเลยนะ ผู้หญิงคนนี้..\'" with wiperight
             scene black
             stop music fadeout 2.0
-            jump artclub_lily
+            if r_lily == True:
+                stop music fadeout 2.0
+                jump artclub_lily
+            elif r_lily == False:
+                stop music fadeout 2.0
+                jump artclub_grace
 
 label artclub_beta:
     play music "audio/bgm/art of plight.mp3" fadein 1.0 volume 0.5
@@ -307,4 +332,63 @@ label artclub_beta:
     show tiwa at right with dissolve
     b "สวัสดีค่า ~ ครูทิวา" with wiperight
     t "มากันครบแล้ว งั้นเรามาประชุมหารือกิจกรรมชมรมกันเลยดีกว่า" with wiperight
-    
+
+label artclub_lily:
+    play music "audio/bgm/art of plight.mp3" fadein 1.0 volume 0.5
+    scene bg_hallway with dissolve
+    m "ในที่สุดก็คาบชมรมซักที !"  with wiperight
+    m "ถ้าจำไม่ผิด เหมือนในจดหมายโควต้าของเรา เขาจะบังคับให้เราไปที่\'ชมรมศิลปะ\'ก่อนสินะ"  with wiperight
+    m "ลืมไปเลยแฮะ ตอนนี้น่าจะยังทันแหล่ะ"  with wiperight
+    m "มั้ง"  with wiperight
+    m "อ้าว คุณหนู.. แบร์ ที่เจอเมื่อเช้านี่ !"  with wiperight
+    show lily at center with dissolve
+    l "แคร์ค่ะ ดิฉันชื่อ \'แครล์ ลิลลี่\' ค่ะ"  with wiperight
+    m "เอ่อ คุณแครล์พอรู้มั้ย ว่าชมรมศิลปะอยู่ที่ไหน" with wiperight
+    l "ไม่ทราบว่าคุณรู้อะไรบ้างคะ ?"  with wiperight
+    m "\'ก็เป็นนักเรียนใหม่นี่หว่า\'"  with wiperight
+    l "เอาเถอะค่ะ ดิฉันอยู่ชมรมศิลปะ"  with wiperight
+    l "จะเป็นผลดีกับชมรมถ้ามีสมาชิกชายเพิ่มขึ้น อยู่ทางนี้ค่ะ"  with wiperight
+    scene black with dissolve
+    "คุณเดินตามแครล์ไป"  with wiperight
+    scene bg_artclub with dissolve
+    show lily at center with dissolve
+    m "ก่อนหน้านี้ฉันยังไม่ได้ขอบคุณที่นำทางมาโรงเรียนเลย" with wiperight
+    l "ไม่จำเป็นหรอกค่ะ" with wiperight
+    b "แหม นาน ๆ ทีจะเห็นผู้ชายคุยกับเจ้าหญิงลิลลี่ได้นะเนี่ย" with wiperight
+    show lily at right with move
+    show beta at left with dissolve
+    l "กรุณาเรียกว่าแครล์ด้วยค่ะ" with wiperight
+    m "อ้าว เบต้านี่" with wiperight
+    m "เธออยู่ชมรมนี้ด้วยหรอ" with wiperight
+    b "ใช้แล้วล่ะ ฉันน่ะ รักการวาดรูปที่สุด !" with wiperight
+    l "ถึงเธอจะวาดไม่ได้เลยก็ตาม" with wiperight
+    b "ว่าแต่วันนี้ลี่เดินมาโรงเรียนหรอ ปกติจะมีรถรับส่งไม่ใช่หรอ" with wiperight
+    l "..วันนี้แค่อยากเดินน่ะค่ะ" with wiperight
+    b "เห~ ไม่ใช่เพราะว่าสงสารเลยอยากเดินนำทางเด็กหนุ่มคนนี้มาโรงเรียนหรอกหรอคะคุณหญิงลิลลี่" with wiperight
+    l "ชะ ชายคนนี้เขาเดินตามมาเองค่ะ" with wiperight
+    b "แหม~ ลิลลี่ก็เป็นซะอย่างนี้ ปากไม่ตรงกับใจตลอดเลยนะ" with wiperight
+    q "พอเลย ทั้งสองคน" with wiperight
+    l "รบกวนรุ่นพี่เกรซช่วยอบรมเบต้ามากกว่านี้หน่อยนะคะ" with wiperight
+    show lily at center with move
+    show grace at right with dissolve
+    b "วันนี้พร้อมหน้าพร้อมตาเลยนะเนี่ย" with wiperight
+    l "หายากที่พี่เกรซจะเข้าชมรม" with wiperight
+    b "ไหน ๆ ก็ไหน ๆ แล้ว ขอแนะนำสมาชิกคนที่ 4 ของเราเลยค่า!" with wiperight
+    m "เดี๋ยว ๆ ผมไปตกลงตอนไหนเนี่ย" with wiperight
+    g "เธอคือคนที่ได้โควต้าเข้าเรียนมาใช่มั้ย" with wiperight
+    m "เอ่อ ใช่ครับ" with wiperight
+    g "งั้นเธอก็คงเลี่ยงที่จะเข้าชมรมไม่ได้แล้วล่ะ" with wiperight
+    g "ฉันชื่อ \'เกรซ\' อยู่ปีสองห้อง A ยินดีที่ได้รู้จัก" with wiperight
+    m "ยินดีที่ได้รู้จักครับ.. เดี๋ยวก่อนนะ" with wiperight
+    m "..ทำไมผมต้องเข้าชมรมด้วยล่ะ?" with wiperight
+    q "เงื่อนไขของนักเรียนโควต้าน่ะ" with wiperight
+    hide lily with dissolve
+    show beta at left with move
+    show grace at center with move
+    show tiwa at right with dissolve
+    b "สวัสดีค่า ~ ครูทิวา" with wiperight
+    t "มากันครบแล้ว งั้นเรามาประชุมหารือกิจกรรมชมรมกันเลยดีกว่า" with wiperight
+
+label artclub_grace:
+    "artclub_grace"
+    pause(99.0)
